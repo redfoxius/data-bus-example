@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use App\FibonacciQueueListener;
+use App\PrimeQueueListener;
 
 if (PHP_SAPI !== 'cli') {
     exit;
@@ -15,5 +15,5 @@ if ($child_pid) {
 // set child process as main
 posix_setsid();
 
-$a = new FibonacciQueueListener();
+$a = new PrimeQueueListener();
 $a->run();

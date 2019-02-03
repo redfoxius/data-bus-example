@@ -12,7 +12,7 @@ trait RedisConnector
             self::$redis->connect(Settings::REDIS_HOST, Settings::REDIS_PORT);
         }
         catch (\RedisException $e) {
-            echo 'Error while redis connection! ' . $e->getMessage();
+            echo 'Error while redis connection! ' . $e->getMessage() . PHP_EOL;
             return false;
         }
 

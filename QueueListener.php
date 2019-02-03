@@ -16,6 +16,12 @@ abstract class QueueListener
         self::connectMysql();
     }
 
+    public function __destruct()
+    {
+        self::disconnectRedis();
+        self::disconnectMysql();
+    }
+
     public function run()
     {
         ini_set('default_socket_timeout', -1);

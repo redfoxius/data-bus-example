@@ -47,10 +47,10 @@ abstract class NumberGenerator
     public function run()
     {
         do {
-            sleep($this->delay);
+            usleep($this->delay);
         } while ($this->generateNext());
 
-        echo 'Finished!';
+        echo 'Finished!' . PHP_EOL;
     }
 
     protected abstract function getNextNumber();

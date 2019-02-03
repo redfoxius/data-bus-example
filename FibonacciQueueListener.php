@@ -12,7 +12,7 @@ class FibonacciQueueListener extends QueueListener
         $this->counterName = 'count_fib';
     }
 
-    protected function processChannelMessage($redisIns, $channel, $msg)
+    public function processChannelMessage($redisIns, $channel, $msg)
     {
         $this->updateQuery(intval($msg), $this->counterName);
     }

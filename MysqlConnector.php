@@ -16,7 +16,7 @@ trait MysqlConnector
             self::$mysql = new \PDO($dsn, $user, $password);
         }
         catch (\PDOException $e) {
-            echo 'Error while mysql connection! ' . $e->getMessage();
+            echo 'Error while mysql connection! ' . $e->getMessage() . PHP_EOL;
             return false;
         }
 
@@ -32,7 +32,7 @@ trait MysqlConnector
     public function updateQuery($number, $type)
     {
         if (!in_array($type, ['count_fib', 'count_prime'])) {
-            echo 'Invalid type of count operation';
+            echo 'Invalid type of count operation' . PHP_EOL;
             return false;
         }
 

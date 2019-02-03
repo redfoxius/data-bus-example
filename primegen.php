@@ -3,16 +3,19 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use App\PrimeNumberGenerator;
 
-/*$options = getopt("count:delay:");
-if (!isset($options['count']) || intval($options['count']) < 1) {
-    echo 'Wrong param value: -count. It must be number > 0 like: -count=1000';
+if (PHP_SAPI !== 'cli') {
+    exit;
+}
+
+$options = getopt("c:d:");
+if (!isset($options['c']) || intval($options['c']) < 1) {
+    echo 'Wrong param value count: -c. It must be number > 0 like: -c 100' . PHP_EOL;
     die();
 }
-if (!isset($options['delay']) || intval($options['delay']) < 0) {
-    echo 'Wrong param value: -delay. It must be number of seconds >= 0 like: -delay=5';
+if (!isset($options['d']) || intval($options['d']) < 0) {
+    echo 'Wrong param value delay: -d. It must be number of micro seconds >= 0 like: -d 500' . PHP_EOL;
     die();
 }
 
-$a = new PrimeNumberGenerator(intval($options['count']), intval($options['delay']));*/
-$a = new PrimeNumberGenerator(20, 1);
+$a = new PrimeNumberGenerator(intval($options['c']), intval($options['d']));
 $a->run();

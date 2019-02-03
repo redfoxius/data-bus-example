@@ -1,9 +1,26 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
 
-echo 'Try to start fibonacci queue listener... ';
-exec('php fiblist.php &');
-echo 'Done! <br>';
+class DatabaseEraser
+{
+    use \App\MysqlConnector;
 
-/*echo 'Try to start prime queue listener... ';
-exec('php primelist.php &');
-echo 'Done! <br>';*/
+    public function __construct()
+    {
+        self::connectMysql();
+
+        $query = "DELETE FROM `" . self::$mysqlTable . "` WHERE 1";
+        $stmt = self::$mysql->prepare($query);
+        $stmt->execute();
+
+        $query = "INSERT INTO `" . self::$mysqlTable . "` (`sum`, `count_fib`, `count_prime`) VALUES (0, 0, 0)";
+        $stmt = self::$mysql->prepare($query);
+        $stmt->execute();
+
+        self::disconnectMysql();
+    }
+}
+
+/** flush db table */
+$a = new DatabaseEraser();
+unset($a);
