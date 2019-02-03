@@ -4,6 +4,9 @@ namespace App;
 
 class FibonacciNumberGenerator extends NumberGenerator
 {
+    private $first  = 1;
+    private $second = 1;
+
     public function __construct($cyclesCount = null, $delay = null)
     {
         parent::__construct($cyclesCount, $delay);
@@ -18,6 +21,17 @@ class FibonacciNumberGenerator extends NumberGenerator
 
     private function getFibonacci($n)
     {
-        return round(pow((sqrt(5)+1)/2, $n) / sqrt(5));
+        switch ($n) {
+            case 1:
+                return $this->first;
+            case 2:
+                return $this->second;
+            default:
+                $next         = $this->first + $this->second;
+                $this->first  = $this->second;
+                $this->second = $next;
+                return $next;
+        }
+        // return round(pow((sqrt(5)+1)/2, $n) / sqrt(5));
     }
 }
